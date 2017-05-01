@@ -2,7 +2,7 @@ import path from 'path'
 import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-const ENV = process.env.NODE_ENV || 'production'
+const ENV = process.env.NODE_ENV || 'development'
 const isProd = ENV === 'production'
 
 export default {
@@ -30,7 +30,7 @@ export default {
 
     ],
   },
-  devtool: isProd ? false : 'source-map',
+  devtool: isProd ? false : 'eval',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
