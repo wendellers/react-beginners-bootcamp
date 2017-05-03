@@ -11,6 +11,9 @@ class FizzbuzzApp extends React.Component {
     result: [],
   }
 
+  renderOutput() {
+    return this.state.result.map(item => <div>{item}</div>)
+  }
   render() {
     return (
       <div className="container app-container">
@@ -71,7 +74,7 @@ class FizzbuzzApp extends React.Component {
           </div>
           <div className="col-md-2 col-md-offset-2">
             <h3>Output</h3>
-            <div className="well" />
+            <div className="well">{this.renderOutput()}</div>
           </div>
         </div>
       </div>

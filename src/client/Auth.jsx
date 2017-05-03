@@ -9,6 +9,16 @@ class AuthApp extends React.Component {
     role: 'guest',
   }
 
+  renderOutput() {
+    if (this.state.role === 'guest') {
+      return <div>Hi stranger</div>
+    }
+    if (this.state.role === 'newUser') {
+      return <div>Welcome aboard {this.state.name}!</div>
+    }
+    return <div>Welcome back {this.state.name}!</div>
+  }
+
   render() {
     return (
       <div className="container app-container">
