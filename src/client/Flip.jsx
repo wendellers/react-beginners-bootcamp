@@ -15,16 +15,25 @@ const styles = {
 class FlipApp extends React.Component {
   state = {
     score: 0,
-    guessed: 'Heads',
-    flipResult: 'Heads',
+    guessed: '',
+    flipResult: '',
   }
 
   guess(guessed) {
-    console.log('[Flip]', guessed)
+    const flipResult = Math.random() > 0.5 ? 'Heads' : 'Tails'
+    this.setState({
+      guessed,
+      flipResult,
+      score: guessed === flipResult ? this.state.score + 1 : this.state.score - 1,
+    })
   }
 
   reset() {
-    console.log('[Flip]', 'reset')
+    this.setState({
+      score: 0,
+      guessed: '',
+      flipResult: '',
+    })
   }
 
   renderOutput() {

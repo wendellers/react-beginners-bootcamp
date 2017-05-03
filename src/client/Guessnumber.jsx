@@ -17,7 +17,9 @@ class GuessnumberApp extends React.Component {
   }
 
   guess() {
-    console.log('[Guessnumber]', 'guess')
+    this.setState({
+      guessed: this.state.guessInput,
+    })
   }
 
   renderOutput() {
