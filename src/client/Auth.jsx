@@ -28,17 +28,34 @@ class AuthApp extends React.Component {
             <h3>Controls</h3>
             <div className="row">
               <div className="col-md-12 form-group">
-                <input placeholder="Name" value={this.state.nameInput} className="form-control" />
+                <input
+                  placeholder="Name"
+                  onChange={evt => this.setState({ nameInput: evt.target.value })}
+                  value={this.state.nameInput}
+                  className="form-control"
+                />
               </div>
             </div>
             <div className="row">
               <div className="col-md-12 form-group">
-                <input type="email" value={this.state.emailInput} placeholder="Email" className="form-control" />
+                <input
+                  type="email"
+                  onChange={evt => this.setState({ emailInput: evt.target.value })}
+                  value={this.state.emailInput}
+                  placeholder="Email"
+                  className="form-control"
+                />
               </div>
             </div>
             <div className="row">
               <div className="col-md-12 form-group">
-                <input type="password" value={this.state.passwordInput} placeholder="Password" className="form-control" />
+                <input
+                  type="password"
+                  onChange={evt => this.setState({ passwordInput: evt.target.value })}
+                  value={this.state.passwordInput}
+                  placeholder="Password"
+                  className="form-control"
+                />
               </div>
             </div>
             <div className="row">
