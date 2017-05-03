@@ -11,6 +11,14 @@ class FizzbuzzApp extends React.Component {
     result: [],
   }
 
+  hitme() {
+    console.log('[Fizzbuzz]', 'hitme')
+  }
+
+  reset() {
+    console.log('[Fizzbuzz]', 'reset')
+  }
+
   renderOutput() {
     return this.state.result.map(item => <div>{item}</div>)
   }
@@ -109,10 +117,10 @@ class FizzbuzzApp extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-6">
-                <button className="btn btn-primary btn-block">Hit me!</button>
+                <button className="btn btn-primary btn-block" onClick={() => this.hitme()}>Hit me!</button>
               </div>
               <div className="col-md-6">
-                <button className="btn btn-default btn-block">Reset</button>
+                <button className="btn btn-default btn-block" onClick={() => this.reset()}>Reset</button>
               </div>
             </div>
           </div>

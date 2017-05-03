@@ -9,6 +9,14 @@ class AuthApp extends React.Component {
     role: 'guest',
   }
 
+  signup() {
+    console.log('[Auth]', 'signup')
+  }
+
+  login() {
+    console.log('[Auth]', 'login')
+  }
+
   renderOutput() {
     if (this.state.role === 'guest') {
       return <div>Hi stranger</div>
@@ -60,10 +68,10 @@ class AuthApp extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-6">
-                <button className="btn btn-primary btn-block">Signup</button>
+                <button className="btn btn-primary btn-block" onClick={() => this.signup()}>Signup</button>
               </div>
               <div className="col-md-6">
-                <button className="btn btn-default btn-block">Login</button>
+                <button className="btn btn-default btn-block" onClick={() => this.login()}>Login</button>
               </div>
             </div>
           </div>
