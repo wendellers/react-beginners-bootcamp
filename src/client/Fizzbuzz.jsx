@@ -25,7 +25,7 @@ class FizzbuzzApp extends React.Component {
               <div className="col-md-6">
                 <div className="form-group">
                   <label htmlFor="starting-number">Starting Number</label>
-                  <input id="starting-number" className="form-control" type="number" placeholder="starting number" value={this.state.startingNUmber} max={10} />
+                  <input id="starting-number" className="form-control" type="number" placeholder="starting number" value={this.state.startingNumber} max={10} />
                 </div>
               </div>
               <div className="col-md-6">
