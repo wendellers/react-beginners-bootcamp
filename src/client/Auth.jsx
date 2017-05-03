@@ -24,16 +24,18 @@ class AuthApp extends React.Component {
   }
 
   renderOutput() {
-    if (this.state.role === 'guest') {
+    const { role, name } = this.state
+    if (role === 'guest') {
       return <div>Hi stranger</div>
     }
-    if (this.state.role === 'newUser') {
-      return <div>Welcome aboard {this.state.name}!</div>
+    if (role === 'newUser') {
+      return <div>Welcome aboard {name}!</div>
     }
-    return <div>Welcome back {this.state.name}!</div>
+    return <div>Welcome back {name}!</div>
   }
 
   render() {
+    const { nameInput, emailInput, passwordInput } = this.state
     return (
       <div className="container app-container">
         <h2>Auth app!</h2>
@@ -45,7 +47,7 @@ class AuthApp extends React.Component {
                 <input
                   placeholder="Name"
                   onChange={evt => this.setState({ nameInput: evt.target.value })}
-                  value={this.state.nameInput}
+                  value={nameInput}
                   className="form-control"
                 />
               </div>
@@ -55,7 +57,7 @@ class AuthApp extends React.Component {
                 <input
                   type="email"
                   onChange={evt => this.setState({ emailInput: evt.target.value })}
-                  value={this.state.emailInput}
+                  value={emailInput}
                   placeholder="Email"
                   className="form-control"
                 />
@@ -66,7 +68,7 @@ class AuthApp extends React.Component {
                 <input
                   type="password"
                   onChange={evt => this.setState({ passwordInput: evt.target.value })}
-                  value={this.state.passwordInput}
+                  value={passwordInput}
                   placeholder="Password"
                   className="form-control"
                 />
