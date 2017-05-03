@@ -16,6 +16,19 @@ class GuessnumberApp extends React.Component {
     number: 73,
   }
 
+  renderOutput() {
+    if (!this.state.guessed) {
+      return null
+    }
+    if (this.state.guessed === this.state.number) {
+      return <div style={styles.success}>Success! The number is {this.state.number}</div>
+    }
+    if (this.state.guessed < this.state.number) {
+      return <div style={styles.failure}>Too low!</div>
+    }
+    return <div style={styles.failure}>Too high!</div>
+  }
+
   render() {
     return (
       <div className="container app-container">
@@ -34,7 +47,7 @@ class GuessnumberApp extends React.Component {
           <div className="col-md-2 col-md-offset-2">
             <h3>Output</h3>
             <div className="well">
-              <div style={styles.success}>Success! The number is {this.state.number}</div>
+              {this.renderOutput()}
             </div>
           </div>
         </div>
