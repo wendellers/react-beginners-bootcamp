@@ -37,13 +37,14 @@ class FlipApp extends React.Component {
   }
 
   renderOutput() {
-    if (!this.state.guessed) {
+    const { guessed, flipResult } = this.state
+    if (!guessed) {
       return null
     }
-    if (this.state.guessed === this.state.flipResult) {
-      return <p style={styles.success}>Horray! {this.state.guessed}</p>
+    if (guessed === flipResult) {
+      return <p style={styles.success}>Horray! {guessed}</p>
     }
-    return <p style={styles.failure}>Boohoo! {this.state.guessed}</p>
+    return <p style={styles.failure}>Boohoo! {guessed}</p>
   }
 
   render() {
