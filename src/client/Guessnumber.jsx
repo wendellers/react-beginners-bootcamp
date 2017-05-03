@@ -38,7 +38,15 @@ class GuessnumberApp extends React.Component {
           <div className="col-md-4">
             <h3>Controls</h3>
             <div className="input-group">
-              <input className="form-control" type="number" value={this.state.guessInput} placeholder="Place your guess here" min={1} max={100} />
+              <input
+                className="form-control"
+                type="number"
+                value={this.state.guessInput}
+                placeholder="Place your guess here"
+                onChange={evt => this.setState({ guessInput: Number(evt.target.value) })}
+                min={1}
+                max={100}
+              />
               <span className="input-group-btn">
                 <button className="btn btn-primary">Guess</button>
               </span>
