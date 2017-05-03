@@ -9,7 +9,7 @@ type Props = {
 }
 
 const App = ({ appName, controls, output }: Props) =>
-  <div className="container app-container">
+  <div className="container">
     <h2>{appName}</h2>
     <div className="row">
       <div className="col-md-4">
