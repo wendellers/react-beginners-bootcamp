@@ -12,15 +12,28 @@ class FizzbuzzApp extends React.Component {
   }
 
   hitme() {
-    console.log('[Fizzbuzz]', 'hitme')
+    const result = []
+    for (let i = this.state.startingNumber; i <= this.state.endingNumber; i += 1) {
+      if (i % this.state.divisibleNumber1 === 0 && i % this.state.divisibleNumber2 === 0) {
+        result.push(this.state.divisibleWord1 + this.state.divisibleWord2)
+      } else if (i % this.state.divisibleNumber1 === 0) {
+        result.push(this.state.divisibleWord1)
+      } else if (i % this.state.divisibleNumber2 === 0) {
+        result.push(this.state.divisibleWord2)
+      } else {
+        result.push(i)
+      }
+    }
+    this.setState({ result })
   }
 
   reset() {
-    console.log('[Fizzbuzz]', 'reset')
+    this.setState({ result: [] })
   }
 
   renderOutput() {
-    return this.state.result.map(item => <div>{item}</div>)
+    // eslint-disable-next-line react/no-array-index-key
+    return this.state.result.map((item, idx) => <div key={idx}>{item}</div>)
   }
   render() {
     return (

@@ -10,11 +10,17 @@ class AuthApp extends React.Component {
   }
 
   signup() {
-    console.log('[Auth]', 'signup')
+    this.setState({
+      name: this.state.nameInput,
+      role: 'newUser',
+    })
   }
 
   login() {
-    console.log('[Auth]', 'login')
+    this.setState({
+      name: this.state.nameInput,
+      role: 'user',
+    })
   }
 
   renderOutput() {
@@ -77,7 +83,7 @@ class AuthApp extends React.Component {
           </div>
           <div className="col-md-2 col-md-offset-2">
             <h3>Output</h3>
-            <div className="well" />
+            <div className="well">{this.renderOutput()}</div>
           </div>
         </div>
       </div>
