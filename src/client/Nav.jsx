@@ -9,16 +9,6 @@ type Props = {
   name: string,
 }
 
-const renderWelcomeMessage = (role, name) => {
-  if (role === 'guest') {
-    return <div className="navbar-text navbar-right">Hello, guest</div>
-  }
-  if (role === 'user') {
-    return <div className="navbar-text navbar-right">Welcome back {name}!</div>
-  }
-  return <div className="navbar-text navbar-right">Welcome aboard, {name}!</div>
-}
-
 const Nav = ({ role, name }: Props) =>
   <div className="navbar navbar-default">
     <nav className="navbar-nav nav">
@@ -26,8 +16,13 @@ const Nav = ({ role, name }: Props) =>
       <li><NavLink to="/guessnumber">Guessnumber</NavLink></li>
       <li><NavLink to="/fizzbuzz">Fizzbuzz</NavLink></li>
       <li><NavLink to="/auth">Auth</NavLink></li>
+      <li><NavLink to="/score">Score</NavLink></li>
     </nav>
-    {renderWelcomeMessage(role, name)}
+    <div className="navbar-text navbar-right">
+      {role === 'guest' && <div className="navbar-text navbar-right">Hello, guest</div>}
+      {role === 'user' && <div className="navbar-text navbar-right">welcomeback, {name}</div>}
+      {role === 'newUser' && <div className="navbar-text navbar-right">welcome aboard, {name}</div>}
+    </div>
   </div>
 
 export default Nav
