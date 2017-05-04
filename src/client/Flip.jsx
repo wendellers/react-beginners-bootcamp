@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import App from './App'
@@ -21,7 +23,7 @@ class FlipApp extends React.Component {
     flipResult: '',
   }
 
-  guess(guessed) {
+  guess(guessed: string) {
     const flipResult = Math.random() > 0.5 ? 'Heads' : 'Tails'
     this.setState({
       guessed,

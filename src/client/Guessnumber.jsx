@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 
 import App from './App'
@@ -13,8 +15,8 @@ const styles = {
 
 class GuessnumberApp extends React.Component {
   state = {
-    guessInput: '',
-    guessed: null,
+    guessInput: 0,
+    guessed: 0,
     number: 73,
   }
 
