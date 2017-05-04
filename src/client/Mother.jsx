@@ -34,8 +34,6 @@ class Mother extends React.Component {
     const { role, name, flipScore } = this.state
     return (
       <div>
-        <h1>Hello my children!</h1>
-        <h2>Im your mother and you WILL love me DIBA?!</h2>
         <Nav role={role} name={name} />
         <Switch>
           <Route path="/flip" render={() => <Flip score={flipScore} onScoreChange={this.onScoreChange} />} />
