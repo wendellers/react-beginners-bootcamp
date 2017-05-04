@@ -22,6 +22,7 @@ const Nav = ({ role, name }: Props) =>
         <li><NavLink to="/guessnumber" activeStyle={styles.active}>Guessnumber</NavLink></li>
         <li><NavLink to="/fizzbuzz" activeStyle={styles.active}>Fizzbuzz</NavLink></li>
         <li><NavLink to="/auth" activeStyle={styles.active}>Auth</NavLink></li>
+        <li><NavLink to="/score" activeStyle={styles.active}>Score</NavLink></li>
       </ul>
       <div className="navbar-text navbar-right">
         {!name && 'Hi Stranger'}

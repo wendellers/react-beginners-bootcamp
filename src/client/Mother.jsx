@@ -9,11 +9,13 @@ import FlipApp from './Flip'
 import GuessnumberApp from './Guessnumber'
 import FizzbuzzApp from './Fizzbuzz'
 import AuthApp from './Auth'
+import ScorePage from './ScorePage'
 
 class Mother extends React.Component {
   state = {
     role: 'guest',
     name: '',
+    flipScore: 0,
   }
 
   login = (name: string) => {
@@ -30,17 +32,33 @@ class Mother extends React.Component {
     })
   }
 
+  updateScore = (diff: number) => {
+    this.setState({ flipScore: this.state.flipScore + diff })
+  }
+
+  flipReset = () => this.setState({ flipScore: 0 })
+
   render() {
-    const { name, role } = this.state
+    const { name, role, flipScore } = this.state
     return (
       <div>
         <h1>Mother knows best!</h1>
         <Nav role={role} name={name} />
         <Switch>
-          <Route exact path={'/flip'} component={FlipApp} />
+          <Route
+            exact
+            path={'/flip'} render={() =>
+              <FlipApp
+                onReset={this.flipReset}
+                onUpdateScore={this.updateScore}
+                score={this.state.flipScore}
+              />
+            }
+          />
           <Route exact path={'/guessnumber'} component={GuessnumberApp} />
           <Route exact path={'/fizzbuzz'} component={FizzbuzzApp} />
           <Route exact path={'/auth'} render={() => <AuthApp onLogin={this.login} onSignup={this.signup} />} />
+          <Route exact path={'/score'} render={() => <ScorePage flipScore={flipScore} />} />
         </Switch>
       </div>
     )
