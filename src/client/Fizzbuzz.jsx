@@ -1,5 +1,7 @@
 import React from 'react'
 
+import App from './App'
+
 class FizzbuzzApp extends React.Component {
   state = {
     startingNumber: 1,
@@ -41,11 +43,10 @@ class FizzbuzzApp extends React.Component {
     const { startingNumber, endingNumber, divisibleNumber1, divisibleWord1,
       divisibleNumber2, divisibleWord2 } = this.state
     return (
-      <div className="container app-container">
-        <h2>Fizz buzz</h2>
-        <div className="row">
-          <div className="col-md-4">
-            <h3>Controls</h3>
+      <App
+        title="Fizz Buzz (Reusable)"
+        controls={
+          <div>
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
@@ -141,12 +142,9 @@ class FizzbuzzApp extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-md-2 col-md-offset-2">
-            <h3>Output</h3>
-            <div className="well">{this.renderOutput()}</div>
-          </div>
-        </div>
-      </div>
+        }
+        output={this.renderOutput()}
+      />
     )
   }
 }
