@@ -4,32 +4,26 @@ import React from 'react'
 
 import App from './App'
 
+type Props = {
+  onLogin: Function,
+  onSignup: Function,
+}
+
 class Auth extends React.Component {
   state = {
     emailInput: '',
     nameInput: '',
     passwordInput: '',
-    role: 'guest',
-    name: '',
   }
 
+  props: Props
+
   login() {
-    this.setState({ role: 'user', name: this.state.nameInput })
+    this.props.onLogin(this.state.nameInput)
   }
 
   signup() {
-    this.setState({ role: 'newUser', name: this.state.nameInput })
-  }
-
-  renderOutput() {
-    const { role, name } = this.state
-    if (role === 'guest') {
-      return <div>Hello, guest</div>
-    }
-    if (role === 'user') {
-      return <div>Welcome back {name}!</div>
-    }
-    return <div>Welcome aboard, {name}!</div>
+    this.props.onSignup(this.state.nameInput)
   }
 
   render() {
@@ -80,7 +74,7 @@ class Auth extends React.Component {
             </div>
           </div>
         }
-        output={this.renderOutput()}
+        output={null}
       />
     )
   }
