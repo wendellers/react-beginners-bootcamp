@@ -4,8 +4,6 @@ import React from 'react'
 
 import App from './App'
 
-const randomNum = () => Math.floor(Math.random() * 100) + 1
-
 const styles = {
   success: {
     color: 'limegreen',
@@ -19,7 +17,7 @@ const styles = {
 class Guessnumber extends React.Component {
 
   state = {
-    number: randomNum(),
+    number: 0,
     guessed: 0,
     guessInput: '',
   }

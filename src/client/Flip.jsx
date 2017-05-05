@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react'
+import { connect } from 'react-redux'
 
+import { guessHeads } from './reduxStuff'
 import App from './App'
 
 const styles = {
@@ -29,16 +31,6 @@ class FlipApp extends React.Component {
 
   props: Props
 
-  guess(guessed: string) {
-    const flipResult = Math.random() > 0.5 ? 'Heads' : 'Tails'
-    const scoreDiff = flipResult === guessed ? 1 : -1
-    this.props.onScoreChange(scoreDiff)
-    this.setState({
-      guessed,
-      flipResult,
-    })
-  }
-
   reset() {
     this.setState({ flipResult: '', guessed: '' })
   }
@@ -61,7 +53,7 @@ class FlipApp extends React.Component {
         controls={
           <div className="row">
             <div className="col-md-4">
-              <button className="btn btn-primary btn-block" onClick={() => this.guess('Heads')}>Heads</button>
+              <button className="btn btn-primary btn-block" onClick={() => this.props.onGuessHeads()}>Heads</button>
             </div>
             <div className="col-md-4">
               <button className="btn btn-primary btn-block" onClick={() => this.guess('Tails')}>Tails</button>
@@ -82,4 +74,12 @@ class FlipApp extends React.Component {
   }
 }
 
-export default FlipApp
+const mapStateToProps = state => ({
+  score: state.flipScore,
+})
+
+const mapDispatchToProps = dispatch => ({
+  onGuessHeads: () => dispatch(guessHeads()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlipApp)

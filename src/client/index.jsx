@@ -31,3 +31,5 @@ if (module.hot) {
 }
 
 render(Mother, store)
+
+window.store = store
