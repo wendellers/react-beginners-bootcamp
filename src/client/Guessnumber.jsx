@@ -1,7 +1,9 @@
 // @flow
 
 import React from 'react'
+import { connect } from 'react-redux'
 
+import { guessnumberInputChange } from './reduxStuff'
 import App from './App'
 
 const styles = {
@@ -16,18 +18,15 @@ const styles = {
 
 class Guessnumber extends React.Component {
 
-  state = {
-    number: 0,
-    guessed: 0,
-    guessInput: '',
-  }
-
-  guess() {
-    this.setState({ guessed: Number(this.state.guessInput) })
+  props: {
+    guessed: number,
+    number: number,
+    guessInput: ?any,
+    onGuessnumberInputChange: Function,
   }
 
   renderOutput() {
-    const { guessed, number } = this.state
+    const { guessed, number } = this.props
     if (!guessed) {
       return null
     }
@@ -44,8 +43,8 @@ class Guessnumber extends React.Component {
         controls={
           <div className="input-group">
             <input
-              value={this.state.guessInput}
-              onChange={evt => this.setState({ guessInput: evt.target.value })}
+              value={this.props.guessInput}
+              onChange={evt => this.props.onGuessnumberInputChange(Number(evt.target.value))}
               className="form-control"
               type="number"
               placeholder="Place your guess here"
@@ -63,4 +62,14 @@ class Guessnumber extends React.Component {
   }
 }
 
-export default Guessnumber
+const mapStateToProps = state => ({
+  number: state.guessnumberNumber,
+  guessed: state.guessnumberGuessed,
+  guessInput: state.guessnumberGuessInput,
+})
+
+const mapDispatchToProps = dispatch => ({
+  onGuessnumberInputChange: (number: number) => dispatch(guessnumberInputChange(number)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Guessnumber)

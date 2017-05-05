@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { guessHeads } from './reduxStuff'
+import { guessHeads, guessTails } from './reduxStuff'
 import App from './App'
 
 const styles = {
@@ -20,23 +20,18 @@ const styles = {
 
 type Props = {
   score: number,
-  onScoreChange: Function,
+  flipResult: string,
+  guessed: ?string,
+  isProcessing: boolean,
+  onGuessHeads: Function,
+  onGuessTails: Function,
 }
 
 class FlipApp extends React.Component {
-  state = {
-    flipResult: '',
-    guessed: '',
-  }
-
   props: Props
 
-  reset() {
-    this.setState({ flipResult: '', guessed: '' })
-  }
-
   renderOutput() {
-    const { flipResult, guessed } = this.state
+    const { flipResult, guessed } = this.props
     if (!flipResult) {
       return null
     }
@@ -48,38 +43,45 @@ class FlipApp extends React.Component {
 
   render() {
     return (
-      <App
-        appName="Flip (using App)"
-        controls={
-          <div className="row">
-            <div className="col-md-4">
-              <button className="btn btn-primary btn-block" onClick={() => this.props.onGuessHeads()}>Heads</button>
+      <div>
+        { this.props.isProcessing && <h3>Loading ...</h3> }
+        <App
+          appName="Flip (using App)"
+          controls={
+            <div className="row">
+              <div className="col-md-4">
+                <button className="btn btn-primary btn-block" onClick={() => this.props.onGuessHeads()}>Heads</button>
+              </div>
+              <div className="col-md-4">
+                <button className="btn btn-primary btn-block" onClick={() => this.props.onGuessTails()}>Tails</button>
+              </div>
+              <div className="col-md-4">
+                <button className="btn btn-default btn-block" onClick={() => this.reset()}>Reset</button>
+              </div>
             </div>
-            <div className="col-md-4">
-              <button className="btn btn-primary btn-block" onClick={() => this.guess('Tails')}>Tails</button>
+          }
+          output={
+            <div>
+              <span style={styles.score}>Score: <strong>{this.props.score}</strong></span>
+              {this.renderOutput()}
             </div>
-            <div className="col-md-4">
-              <button className="btn btn-default btn-block" onClick={() => this.reset()}>Reset</button>
-            </div>
-          </div>
-        }
-        output={
-          <div>
-            <span style={styles.score}>Score: <strong>{this.props.score}</strong></span>
-            {this.renderOutput()}
-          </div>
-        }
-      />
+          }
+        />
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
   score: state.flipScore,
+  isProcessing: state.isFlipProcessing,
+  flipResult: state.flipResult,
+  flipGuessed: state.flipGuessed,
 })
 
 const mapDispatchToProps = dispatch => ({
   onGuessHeads: () => dispatch(guessHeads()),
+  onGuessTails: () => dispatch(guessTails()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FlipApp)
