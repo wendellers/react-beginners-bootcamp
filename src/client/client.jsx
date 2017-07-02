@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom'
 
 import Welcome from './Welcome'
 import Flip from './Flip'
+import Guessnumber from './guessnumber'
+import Fizzbuzz from './fizzbuzz'
+import Auth from './auth'
 
 const render = (AppComponent, AppTarget) => {
   ReactDOM.render(
@@ -15,6 +18,10 @@ const render = (AppComponent, AppTarget) => {
 
 render(Welcome, '#welcome-app')
 render(Flip, '#flip-app')
+render(Guessnumber, '#guessnumber-app')
+render(Fizzbuzz, '#fizzbuzz-app')
+render(Auth, '#auth-app')
+
 
 if (module.hot) {
   console.log(module)
