@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Flip = () =>
+const Flip = () => >> 
 	<h1> this is flip!!!! </h1>
 
 
