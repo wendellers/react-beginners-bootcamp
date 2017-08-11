@@ -1,5 +1,6 @@
 // @flow
 
+import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -11,7 +12,7 @@ import Auth from './auth'
 
 const render = (AppComponent, AppTarget) => {
   ReactDOM.render(
-    <AppComponent />,
+    <AppComponent title={'this is title'} />,
     document.querySelector(AppTarget),
   )
 }
@@ -24,7 +25,6 @@ render(Auth, '#auth-app')
 
 
 if (module.hot) {
-  console.log(module)
   // flow-disable-next-line
   module.hot.accept('./Welcome', () => {
     // eslint-disable-next-line global-require

@@ -1,10 +1,12 @@
 // @flow
-
 import React from 'react'
 
-import { ENV } from '../shared/utils'
+type Props = {
+  title: string
+}
 
-const App = () =>
-  <h1>[{ENV}] Welcome To React Bootcamp asd!</h1>
+const Welcome = ({ title }: Props) => (
+  <h1> {title} Welcome To React Bootcamp!</h1>
+)
 
-export default App
+export default Welcome
